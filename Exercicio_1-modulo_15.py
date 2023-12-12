@@ -2,69 +2,52 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-st.title('Uber pickups in NYC')
+st.set_page_config(page_title = 'Exercício Streamlit',
+                    page_icon='https://i.ytimg.com/vi/4ys7otXf_PA/maxresdefault.jpg',
+                    layout='wide')
 
-DATE_COLUMN = 'date/time'
-DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
-            'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
+st.title('Exercício_1 - Módulo_15')
 
 @st.cache_data
-def load_data(nrows):
-    data = pd.read_csv(DATA_URL, nrows=nrows)
-    lowercase = lambda x: str(x).lower()
-    data.rename(lowercase, axis='columns', inplace=True)
-    data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])
-    return data
+def carregar_df():
+    df = pd.DataFrame({
+        'Primeira coluna': [1, 2, 3, 4],
+        'Segunda coluna': [10, 20, 30, 40]
+        })
+    return df
+df = carregar_df()
 
-data_load_state = st.text('Loading data...')
-data = load_data(10000)
-data_load_state.text("Done! (using st.cache_data)")
+if st.checkbox('Mostrar base de dados'):
+    st.write("Aqui está nossa primeira tentativa de usar dados para criar uma tabela:")
+    st.dataframe(df.style.highlight_max(axis=0))
 
-if st.checkbox('Show raw data'):
-    st.subheader('Raw data')
-    st.write(data)
 
-st.subheader('Number of pickups by hour')
-hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
-st.bar_chart(hist_values)
-
-# Some number in the range 0-23
-hour_to_filter = st.slider('hour', 0, 23, 17)
-filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
-
-st.subheader('Map of all pickups at %s:00' % hour_to_filter)
-st.map(filtered_data)
-
-df = pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
-    })
-
+st.write("Utilizando o selectbox para escolha do número na variável 'Primeira coluna'")
 option = st.selectbox(
-    'Which number do you like best?',
-     df['first column'])
+    'Qual número você mais gosta?',
+     df['Primeira coluna'])
 
-'You selected: ', option
+'Você selecionou: ', option
 
-# Add a selectbox to the sidebar:
-add_selectbox = st.sidebar.selectbox(
-    'How would you like to be contacted?',
-    ('Email', 'Home phone', 'Mobile phone')
-)
+st.write("Utilizando um botão para escolha do número na variável 'Primeira coluna'")
+numero =  df['Primeira coluna'].to_list()
+numero = list(map(str,numero))
+num_pedido = st.text_input('Digite o número desejado')
 
-# Add a slider to the sidebar:
-add_slider = st.sidebar.slider(
-    'Select a range of values',
-    0.0, 100.0, (25.0, 75.0)
-)
+if st.button('Verificar'):
+    consulta = num_pedido in numero
+    if consulta:
+        f'Você selecionou: {num_pedido}'
+    else:
+        'Este número não está na tabela. Deseja Incluir?'
 
-left_column, right_column = st.columns(2)
-# You can use a column just like st.sidebar:
-left_column.button('Press me!')
+st.write("Utilizando o 'data editor' para inclusão ou exclusão de dados do dataframe")
+edited_df = st.data_editor(df, num_rows="dynamic")
 
-# Or even better, call Streamlit functions inside a "with" block:
-with right_column:
-    chosen = st.radio(
-        'Sorting hat',
-        ("Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"))
-    st.write(f"You are in {chosen} house!")
+st.write("Visualizando os dados atualizados")
+st.dataframe(edited_df.style.highlight_max(axis=0))
+
+st.write("Fazendo download do dataframe")
+if st.button('Download'):
+    edited_df.to_csv('./download.csv',index=False, sep=';')
+
