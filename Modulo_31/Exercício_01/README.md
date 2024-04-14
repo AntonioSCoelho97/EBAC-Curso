@@ -4,7 +4,9 @@ Atividade relativa ao Exercício_01 do Módulo_31.
 
 ## Descrição do projeto
 
-Aplicação da biblioteca Streamlit para realizar a segmentação de clientes com base no comportamento de compras dos mesmos.
+Aplicação da biblioteca Streamlit para realizar a segmentação de clientes, através da ferramenta RFV, com base no comportamento de compras dos mesmos.
+
+RFV significa recência, frequência, valor e é utilizado para segmentação de clientes baseado no comportamento de compras dos clientes e agrupa eles em clusters parecidos.
 
 A aplicação está hospedada em xxxxx.
 
@@ -12,15 +14,15 @@ A aplicação está hospedada em xxxxx.
 
 Este projeto apresenta as seguintes dependências:
 
-pandas
-streamlit
-numpy
-datetime
-PIL
-io
+- pandas
+- streamlit
+- numpy
+- datetime
+- PIL
+- io
 
 ## Autor
 
 Nome do desenvolvedor do projeto e informação para entrar em contato.
-Antônio Coelho  
+- Antônio Coelho  
 
