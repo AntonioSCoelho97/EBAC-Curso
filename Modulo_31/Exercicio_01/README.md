@@ -8,7 +8,7 @@ Aplicação da biblioteca Streamlit para realizar a segmentação de clientes, a
 
 RFV significa recência, frequência, valor e é utilizado para segmentação de clientes baseado no comportamento de compras dos clientes e agrupa eles em clusters parecidos.
 
-A aplicação está hospedada em xxxxx.
+A aplicação está hospedada em https://modulo-31-exercicio-01.onrender.com.
 
 ### Dependencias
 
