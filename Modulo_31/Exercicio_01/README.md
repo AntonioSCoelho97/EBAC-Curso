@@ -25,3 +25,4 @@ Este projeto apresenta as seguintes dependências:
 
 Nome do desenvolvedor do projeto e informação para entrar em contato.
 - Antônio Coelho  
+- https://www.linkedin.com/in/antonio-coelho-datascience/
