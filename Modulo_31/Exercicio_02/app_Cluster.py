@@ -93,12 +93,13 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     df_2['Month'] = df_2['Month'].map(dict_mes)
     df_2['Weekend'] = df_2['Weekend'].astype(int)
 
-    # Verificando a distribuição dessas variáveis
-    # sns.pairplot(df_2, hue = 'SpecialDay') 
+    st.write('#### Verificando a distribuição dessas variáveis')
+    sns.pairplot(df_2, hue = 'SpecialDay')
+    st.pyplot(plt) 
     # Pela limitação do web service será apresentada a figura 
 
-    st.write('#### Verificando a distribuição dessas variáveis')
-    st.image("https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/pairplot.png")
+    # st.write('#### Verificando a distribuição dessas variáveis')
+    # st.image("https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/pairplot.png")
 
     st.write('#### Procurando valores do tipo "missing"')
     st.write(df_1.isna().sum())
@@ -166,13 +167,13 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     st.dataframe(Z_df.head())
 
     st.write('#### Visualizando o Dendrograma')
-    # fig,axs = plt.subplots(1,1,figsize=(12,12))
-    # dn = dendrogram(Z, truncate_mode='level',p=30,show_leaf_counts=True,ax=axs, color_threshold=.24)
-    # st.write(f"Leaves = {len(dn['leaves'])}")
-    # st.pyplot(plt)
+    fig,axs = plt.subplots(1,1,figsize=(12,12))
+    dn = dendrogram(Z, truncate_mode='level',p=30,show_leaf_counts=True,ax=axs, color_threshold=.24)
+    st.write(f"Leaves = {len(dn['leaves'])}")
+    st.pyplot(plt)
     # por limitação do web service será apresentada a figura
-    st.write('Leaves = 12045')
-    st.image("https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/dendrograma.png")
+    # st.write('Leaves = 12045')
+    # st.image("https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/dendrograma.png")
     
 
     st.write('#### avaliando agrupamentos hierárquicos com 3 grupos')
