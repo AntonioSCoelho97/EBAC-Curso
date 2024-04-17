@@ -94,7 +94,7 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     df_2['Weekend'] = df_2['Weekend'].astype(int)
 
     st.write('#### Verificando a distribuição dessas variáveis')
-    sns.pairplot(df_2, hue = 'SpecialDay')
+    sns.pairplot(df_2.iloc[:,6:], hue = 'SpecialDay')
     st.pyplot(plt) 
     # Pela limitação do web service será apresentada a figura 
 
