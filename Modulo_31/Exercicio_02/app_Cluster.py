@@ -181,9 +181,10 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     # Convertendo a varíavel 'grupo' em 'str' para melhor visualização
     df_grupo_3['grupo_3'] = df_grupo_3['grupo_3'].astype(str)
 
-    st.write('#### Verificando a distribuição dessas variáveis')
-    sns.pairplot(df_grupo_3.iloc[:,6:], hue = 'grupo_3')
-    st.pyplot(plt)
+    # st.write('#### Verificando a distribuição dessas variáveis')
+    # sns.pairplot(df_grupo_3.iloc[:,6:], hue = 'grupo_3')
+    # st.pyplot(plt)
+    # por limitação do web service não será apresentada a figura
 
     st.write('#### Verificando a composição do agrupamento com a decisão de compra considerando a proximidade de uma data especial')
     df_cross_3_1 = pd.crosstab(index=[df_grupo_3['Revenue'], df_grupo_3['SpecialDay']], 
@@ -205,9 +206,10 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     # Convertendo a varíavel 'grupo' em 'str' para melhor visualização
     df_grupo_4['grupo_4'] = df_grupo_4['grupo_4'].astype(str)
 
-    st.write('#### Verificando a distribuição dessas variáveis')
-    sns.pairplot(df_grupo_4.iloc[:,6:], hue = 'grupo_4')
-    st.pyplot(plt)
+    # st.write('#### Verificando a distribuição dessas variáveis')
+    # sns.pairplot(df_grupo_4.iloc[:,6:], hue = 'grupo_4')
+    # st.pyplot(plt)
+    # por limitação do web service não será apresentada a figura
 
     st.write('#### Verificando a composição do agrupamento com a decisão de compra considerando a proximidade de uma data especial')
     df_cross_4_1 = pd.crosstab(index=[df_grupo_4['Revenue'], df_grupo_4['SpecialDay']], 
@@ -240,8 +242,9 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     st.write('#### Avalie os grupos obtidos com relação às variáveis fora do escopo da análise (minimamente *bounce rate* e *revenue*).')
     st.write('#### - Qual grupo possui clientes mais propensos à compra?')
 
-    sns.pairplot(df_grupo_4.iloc[:,8:], hue = 'grupo_4')
-    st.pyplot(plt)
+    # sns.pairplot(df_grupo_4.iloc[:,8:], hue = 'grupo_4')
+    # st.pyplot(plt)
+    # por limitação do web service não será apresentada a figura
 
     st.write('#### Visualizando o quantitativo de clientes com compras em cada grupo para o agrupamento com 3 grupos')
     st.dataframe(crosstab_g4_norm)
