@@ -10,7 +10,6 @@ from gower import gower_matrix
 from scipy.spatial.distance import pdist, squareform
 from sklearn.preprocessing import StandardScaler
 
-@st.cache_data(show_spinner=False)
 # Função principal da aplicação
 def main():
     # Configuração inicial da página da aplicação
@@ -99,11 +98,7 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     # Pela limitação do web service será apresentada a figura 
 
     st.write('#### Verificando a distribuição dessas variáveis')
-    st.markdown('''
-                <div style="text-align:center">
-                    <img src="https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/pairplot.png"  width=50%>
-                </div>
-                ''', unsafe_allow_html=True)
+    st.image("https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/pairplot.png")
 
     st.write('#### Procurando valores do tipo "missing"')
     st.write(df_1.isna().sum())
@@ -177,11 +172,7 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     # st.pyplot(plt)
     # por limitação do web service será apresentada a figura
     st.write('Leaves = 12045')
-    st.markdown('''
-                    <div style="text-align:center">
-                    <img src="https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/dendrograma.png"  width=50%>
-                </div>
-                ''', unsafe_allow_html=True)
+    st.image("https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/dendrograma.png")
     
 
     st.write('#### avaliando agrupamentos hierárquicos com 3 grupos')
