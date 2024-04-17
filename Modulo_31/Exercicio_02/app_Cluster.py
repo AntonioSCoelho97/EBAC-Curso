@@ -166,15 +166,12 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     Z_df = pd.DataFrame(Z,columns=['id1','id2','dist','n'])
     st.dataframe(Z_df.head())
 
-    st.write('#### Visualizando o Dendrograma')
-    fig,axs = plt.subplots(1,1,figsize=(12,12))
-    dn = dendrogram(Z, truncate_mode='level',p=30,show_leaf_counts=True,ax=axs, color_threshold=.24)
-    st.write(f"Leaves = {len(dn['leaves'])}")
-    st.pyplot(plt)
-    # por limitação do web service será apresentada a figura
-    # st.write('Leaves = 12045')
-    # st.image("https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/dendrograma.png")
-    
+    # st.write('#### Visualizando o Dendrograma')
+    # fig,axs = plt.subplots(1,1,figsize=(12,12))
+    # dn = dendrogram(Z, truncate_mode='level',p=30,show_leaf_counts=True,ax=axs, color_threshold=.24)
+    # st.write(f"Leaves = {len(dn['leaves'])}")
+    # st.pyplot(plt)
+    # por limitação do web service não será apresentada a figura
 
     st.write('#### avaliando agrupamentos hierárquicos com 3 grupos')
     df_grupo_3 = pd.concat([df[variaveis], df[variaveis_cat], df[['BounceRates','Revenue']]], axis=1)
