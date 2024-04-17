@@ -101,7 +101,7 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     st.write('#### Verificando a distribuição dessas variáveis')
     st.markdown('''
                 <div style="text-align:center">
-                    <img src="https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/pairplot.png"  width=100%>
+                    <img src="https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/pairplot.png"  width=50%>
                 </div>
                 ''', unsafe_allow_html=True)
 
@@ -179,7 +179,7 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     st.markdown('''
     Leaves = 12045
                 <div style="text-align:center">
-                    <img src="https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/dendrograma.png"  width=100%>
+                    <img src="https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/dendrograma.png"  width=50%>
                 </div>
                 ''', unsafe_allow_html=True)
     
