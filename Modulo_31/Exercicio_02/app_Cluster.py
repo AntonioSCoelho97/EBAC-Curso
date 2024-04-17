@@ -176,9 +176,9 @@ Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o c
     # st.write(f"Leaves = {len(dn['leaves'])}")
     # st.pyplot(plt)
     # por limitação do web service será apresentada a figura
+    st.write('Leaves = 12045')
     st.markdown('''
-    Leaves = 12045
-                <div style="text-align:center">
+                    <div style="text-align:center">
                     <img src="https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_31/Exercicio_02/dendrograma.png"  width=50%>
                 </div>
                 ''', unsafe_allow_html=True)
