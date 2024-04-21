@@ -1,0 +1,6 @@
+services:
+  - name: app
+    env: python
+    autmatic_scaling:
+      min_instances: 1
+      max_instances: 10
