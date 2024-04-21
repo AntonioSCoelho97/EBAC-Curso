@@ -213,6 +213,7 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     Z_df = pd.DataFrame(Z,columns=['id1','id2','dist','n'])
 	
     st.dataframe(Z_df.head())
+    del Z_df
 
     st.markdown("---")
 
@@ -238,6 +239,7 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
                        columns=df_grupo_3['grupo_3'], values=df_grupo_3['SpecialDay'], 
                        aggfunc='count').fillna(0).astype(int)
     st.dataframe(df_cross_3_1)
+    del df_cross_3_1
 
     st.markdown("---")
     
@@ -246,6 +248,7 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
                        columns=df_grupo_3['grupo_3'], values=df_grupo_3['Weekend'], 
                        aggfunc='count').fillna(0).astype(int)
     st.dataframe(df_cross_3_2)
+    del df_cross_3_2
 
     st.markdown("---")
     
@@ -271,6 +274,7 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
                        columns=df_grupo_4['grupo_4'], values=df_grupo_4['SpecialDay'], 
                        aggfunc='count').fillna(0).astype(int)
     st.dataframe(df_cross_4_1)
+    del df_cross_4_1
 
     st.markdown("---")
     
@@ -279,7 +283,8 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
                        columns=df_grupo_4['grupo_4'], values=df_grupo_4['Weekend'], 
                        aggfunc='count').fillna(0).astype(int)
     st.dataframe(df_cross_2)
-
+    del df_cross_2
+	
     st.markdown("---")
     
     st.write('#### Visualizando o quantitativo de clientes com compras em cada grupo para o agrupamento com 4 grupos')
