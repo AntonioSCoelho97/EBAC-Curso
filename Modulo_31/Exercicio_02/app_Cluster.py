@@ -21,12 +21,6 @@ def load_data(file_data):
     return pd.read_csv(file_data)
 
 
-@st.cache_data(show_spinner=False)
-def Calc_dn(Z):
-    fig,axs = plt.subplots(1,1,figsize=(12,12))
-    dn = dendrogram(Z, truncate_mode='level',p=30,show_leaf_counts=True,ax=axs, color_threshold=.24)
-    return dn
-
 # Função principal da aplicação
 def main():
     # Configuração inicial da página da aplicação
@@ -216,13 +210,6 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     Z_df = pd.DataFrame(Z,columns=['id1','id2','dist','n'])
 	
     st.dataframe(Z_df.head())
-
-    st.markdown("---")
-
-    st.write('#### Visualizando o Dendrograma')
-    dn = Calc_dn(Z)
-    st.write(f"Leaves = {len(dn['leaves'])}")
-    st.pyplot(plt)
 
     st.markdown("---")
 
