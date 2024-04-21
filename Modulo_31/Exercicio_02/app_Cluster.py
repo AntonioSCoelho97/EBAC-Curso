@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import streamlit as st
+import gc
 from scipy.cluster.hierarchy import linkage, fcluster, dendrogram
 from gower import gower_matrix
 from scipy.spatial.distance import pdist, squareform
@@ -123,6 +124,8 @@ Faça uma análise descritiva das variáveis do escopo.
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_2, hue = 'SpecialDay')
     st.pyplot(plt)
+    plt.close()
+    gc.collect()
 
     st.markdown("---")
 
@@ -225,6 +228,8 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_grupo_3.iloc[:,6:], hue = 'grupo_3')
     st.pyplot(plt)
+    plt.close()
+    gc.collect()
 
     st.markdown("---")
 
@@ -256,6 +261,8 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_grupo_4.iloc[:,6:], hue = 'grupo_4')
     st.pyplot(plt)
+    plt.close()
+    gc.collect()
 
     st.markdown("---")
     
@@ -309,6 +316,8 @@ Avalie os grupos obtidos com relação às variáveis fora do escopo da análise
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_grupo_4.iloc[:,8:], hue = 'grupo_4')
     st.pyplot(plt)
+    plt.close()
+    gc.collect()
 
     st.markdown("---")
     
