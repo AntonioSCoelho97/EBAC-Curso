@@ -20,24 +20,6 @@ sns.set_theme(style="ticks", rc=custom_params)
 def load_data(file_data):
     return pd.read_csv(file_data)
 
-@st.cache_data(show_spinner=False)
-def calc_Z(df_var_pd):
-    # Criando lista com a identificação das variáveis categóricas
-    vars_cat = [True if x in {'SpecialDay_0.0', 'SpecialDay_0.2', 'SpecialDay_0.4',
-       'SpecialDay_0.6', 'SpecialDay_0.8', 'SpecialDay_1.0',
-       'Weekend_False', 'Weekend_True', 'Month_Aug', 'Month_Dec',
-       'Month_Feb', 'Month_Jul', 'Month_June', 'Month_Mar', 'Month_May',
-       'Month_Nov', 'Month_Oct', 'Month_Sep'} else False for x in df_var_pd.columns]
-    
-    # Calculando a matriz de distâncias utilizando a distância de Gower
-    distancia_gower = gower_matrix(df_var_pd, cat_features=vars_cat)
-    
-    # ajustando o formato da matriz de distâncias para alimentar o algoritmo
-    gdv = squareform(distancia_gower,force='tovector')
-    
-    Z = linkage(gdv, method='ward')
-    Z_df = pd.DataFrame(Z,columns=['id1','id2','dist','n'])
-    return Z, Z_df
 
 @st.cache_data(show_spinner=False)
 def Calc_dn(Z):
@@ -217,7 +199,22 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     st.markdown("---")
 
     st.write('#### Treinando o agrupamento')
-    Z,Z_df = calc_Z(df_var_pd)
+    # Criando lista com a identificação das variáveis categóricas
+    vars_cat = [True if x in {'SpecialDay_0.0', 'SpecialDay_0.2', 'SpecialDay_0.4',
+       'SpecialDay_0.6', 'SpecialDay_0.8', 'SpecialDay_1.0',
+       'Weekend_False', 'Weekend_True', 'Month_Aug', 'Month_Dec',
+       'Month_Feb', 'Month_Jul', 'Month_June', 'Month_Mar', 'Month_May',
+       'Month_Nov', 'Month_Oct', 'Month_Sep'} else False for x in df_var_pd.columns]
+    
+    # Calculando a matriz de distâncias utilizando a distância de Gower
+    distancia_gower = gower_matrix(df_var_pd, cat_features=vars_cat)
+    
+    # ajustando o formato da matriz de distâncias para alimentar o algoritmo
+    gdv = squareform(distancia_gower,force='tovector')
+    
+    Z = linkage(gdv, method='ward')
+    Z_df = pd.DataFrame(Z,columns=['id1','id2','dist','n'])
+	
     st.dataframe(Z_df.head())
 
     st.markdown("---")
