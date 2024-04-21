@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import streamlit as st
-import gc
 from scipy.cluster.hierarchy import linkage, fcluster, dendrogram
 from gower import gower_matrix
 from scipy.spatial.distance import pdist, squareform
@@ -21,6 +20,30 @@ sns.set_theme(style="ticks", rc=custom_params)
 def load_data(file_data):
     return pd.read_csv(file_data)
 
+@st.cache_data(show_spinner=False)
+def calc_Z(df_var_pd):
+    # Criando lista com a identificação das variáveis categóricas
+    vars_cat = [True if x in {'SpecialDay_0.0', 'SpecialDay_0.2', 'SpecialDay_0.4',
+       'SpecialDay_0.6', 'SpecialDay_0.8', 'SpecialDay_1.0',
+       'Weekend_False', 'Weekend_True', 'Month_Aug', 'Month_Dec',
+       'Month_Feb', 'Month_Jul', 'Month_June', 'Month_Mar', 'Month_May',
+       'Month_Nov', 'Month_Oct', 'Month_Sep'} else False for x in df_var_pd.columns]
+    
+    # Calculando a matriz de distâncias utilizando a distância de Gower
+    distancia_gower = gower_matrix(df_var_pd, cat_features=vars_cat)
+    
+    # ajustando o formato da matriz de distâncias para alimentar o algoritmo
+    gdv = squareform(distancia_gower,force='tovector')
+    
+    Z = linkage(gdv, method='ward')
+    Z_df = pd.DataFrame(Z,columns=['id1','id2','dist','n'])
+    return Z, Z_df
+
+@st.cache_data(show_spinner=False)
+def Calc_dn(Z):
+    fig,axs = plt.subplots(1,1,figsize=(12,12))
+    dn = dendrogram(Z, truncate_mode='level',p=30,show_leaf_counts=True,ax=axs, color_threshold=.24)
+    return dn
 
 # Função principal da aplicação
 def main():
@@ -46,7 +69,7 @@ def main():
 
     # Título principal da aplicação
     st.write('''### Tarefa - Agrupamento hierárquico
-             	Neste exercício vamos usar a base [online shoppers purchase intention](https://archive.ics.uci.edu/ml/datasets/Online+Shoppers+Purchasing+Intention+Dataset) de Sakar, C.O., Polat, S.O., Katircioglu, M. et al. Neural Comput & Applic (2018). [Web Link](https://doi.org/10.1007/s00521-018-3523-0).
+             Neste projeto foi utilizada a base [online shoppers purchase intention](https://archive.ics.uci.edu/ml/datasets/Online+Shoppers+Purchasing+Intention+Dataset) de Sakar, C.O., Polat, S.O., Katircioglu, M. et al. Neural Comput & Applic (2018). [Web Link](https://doi.org/10.1007/s00521-018-3523-0).
 
                 A base trata de registros de 12.330 sessões de acesso a páginas, cada sessão sendo de um único usuário em um período de 12 meses, para posteriormente relacionar o design da página e o perfil do cliente.
                 
@@ -124,8 +147,6 @@ Faça uma análise descritiva das variáveis do escopo.
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_2, hue = 'SpecialDay')
     st.pyplot(plt)
-    plt.close()
-    gc.collect()
 
     st.markdown("---")
 
@@ -196,24 +217,15 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     st.markdown("---")
 
     st.write('#### Treinando o agrupamento')
-    # Criando lista com a identificação das variáveis categóricas
-    vars_cat = [True if x in {'SpecialDay_0.0', 'SpecialDay_0.2', 'SpecialDay_0.4',
-       'SpecialDay_0.6', 'SpecialDay_0.8', 'SpecialDay_1.0',
-       'Weekend_False', 'Weekend_True', 'Month_Aug', 'Month_Dec',
-       'Month_Feb', 'Month_Jul', 'Month_June', 'Month_Mar', 'Month_May',
-       'Month_Nov', 'Month_Oct', 'Month_Sep'} else False for x in df_var_pd.columns]
-    
-    # Calculando a matriz de distâncias utilizando a distância de Gower
-    distancia_gower = gower_matrix(df_var_pd, cat_features=vars_cat)
-    
-    # ajustando o formato da matriz de distâncias para alimentar o algoritmo
-    gdv = squareform(distancia_gower,force='tovector')
-    
-    Z = linkage(gdv, method='ward')
-    Z_df = pd.DataFrame(Z,columns=['id1','id2','dist','n'])
-	
+    Z,Z_df = calc_Z(df_var_pd)
     st.dataframe(Z_df.head())
-    del Z_df
+
+    st.markdown("---")
+
+    st.write('#### Visualizando o Dendrograma')
+    dn = Calc_dn(Z)
+    st.write(f"Leaves = {len(dn['leaves'])}")
+    st.pyplot(plt)
 
     st.markdown("---")
 
@@ -229,8 +241,6 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_grupo_3.iloc[:,6:], hue = 'grupo_3')
     st.pyplot(plt)
-    plt.close()
-    gc.collect()
 
     st.markdown("---")
 
@@ -239,7 +249,6 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
                        columns=df_grupo_3['grupo_3'], values=df_grupo_3['SpecialDay'], 
                        aggfunc='count').fillna(0).astype(int)
     st.dataframe(df_cross_3_1)
-    del df_cross_3_1
 
     st.markdown("---")
     
@@ -248,7 +257,6 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
                        columns=df_grupo_3['grupo_3'], values=df_grupo_3['Weekend'], 
                        aggfunc='count').fillna(0).astype(int)
     st.dataframe(df_cross_3_2)
-    del df_cross_3_2
 
     st.markdown("---")
     
@@ -264,8 +272,6 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_grupo_4.iloc[:,6:], hue = 'grupo_4')
     st.pyplot(plt)
-    plt.close()
-    gc.collect()
 
     st.markdown("---")
     
@@ -274,7 +280,6 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
                        columns=df_grupo_4['grupo_4'], values=df_grupo_4['SpecialDay'], 
                        aggfunc='count').fillna(0).astype(int)
     st.dataframe(df_cross_4_1)
-    del df_cross_4_1
 
     st.markdown("---")
     
@@ -283,8 +288,7 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
                        columns=df_grupo_4['grupo_4'], values=df_grupo_4['Weekend'], 
                        aggfunc='count').fillna(0).astype(int)
     st.dataframe(df_cross_2)
-    del df_cross_2
-	
+
     st.markdown("---")
     
     st.write('#### Visualizando o quantitativo de clientes com compras em cada grupo para o agrupamento com 4 grupos')
@@ -321,8 +325,6 @@ Avalie os grupos obtidos com relação às variáveis fora do escopo da análise
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_grupo_4.iloc[:,8:], hue = 'grupo_4')
     st.pyplot(plt)
-    plt.close()
-    gc.collect()
 
     st.markdown("---")
     
