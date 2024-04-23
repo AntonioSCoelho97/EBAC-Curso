@@ -238,7 +238,7 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     st.markdown("---")
 
     # Convertendo a varíavel 'grupo' em 'str' para melhor visualização
-    df_grupo_3['grupo_3'] = df_grupo_3['grupo_3'].astype(str)
+    # df_grupo_3['grupo_3'] = df_grupo_3['grupo_3'].astype(str)
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_grupo_3.iloc[:,6:], hue = 'grupo_3')
     st.pyplot(plt)
@@ -269,7 +269,7 @@ Faça uma análise descritiva para pelo menos duas soluções de agrupamentos (d
     st.markdown("---")
 
     # Convertendo a varíavel 'grupo' em 'str' para melhor visualização
-    df_grupo_4['grupo_4'] = df_grupo_4['grupo_4'].astype(str)
+    # df_grupo_4['grupo_4'] = df_grupo_4['grupo_4'].astype(str)
     st.write('#### Verificando a distribuição dessas variáveis')
     sns.pairplot(df_grupo_4.iloc[:,6:], hue = 'grupo_4')
     st.pyplot(plt)
