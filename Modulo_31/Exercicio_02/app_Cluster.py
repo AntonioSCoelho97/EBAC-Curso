@@ -206,7 +206,9 @@ Liste as variáveis que você vai querer utilizar. Essa é uma atividade importa
 Nesta atividade vamos adotar uma abordagem bem pragmática e avaliar agrupamentos hierárquicos com 3 e 4 grupos, por estarem bem alinhados com uma expectativa e estratégia do diretor da empresa. 
 
 *Atenção*: Cuidado se quiser fazer o dendrograma, pois com muitas observações ele pode ser mais complicado de fazer, e dependendo de como for o comando, ele pode travar o *kernell* do seu python.
-             ### Avaliação dos grupos
+             ''', unsafe_allow_html=True)
+    st.write('''
+      	     ### Avaliação dos grupos
 
 Construa os agrupamentos com a técnica adequada que vimos em aula. Não se esqueça de tratar variáveis qualitativas, padronizar escalas das quantitativas, tratar valores faltantes e utilizar a distância correta.
 
