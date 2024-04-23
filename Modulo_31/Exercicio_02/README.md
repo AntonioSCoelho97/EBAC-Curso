@@ -12,7 +12,7 @@ A base trata de registros de 12.330 sessões de acesso a páginas, cada sessão 
 
 Nosso objetivo agora é agrupar as sessões de acesso ao portal considerando o comportamento de acesso e informações da data, como a proximidade a uma data especial, fim de semana e o mês..
 
-A aplicação está hospedada em https://ebac-curso-49dkawmy28gqen2yswqhts.streamlit.app.
+A aplicação está hospedada em https://ebac-curso-49dkawmy28gqen2yswqhts.streamlit.app/.
 
 ### Dependencias
 
