@@ -225,7 +225,7 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        model = load_model('lightgbm model_final')
+        model = load_model('lightgbm model_final.pkl')
         st.write(model)
 
         st.write('Identificando o modelo carregado')
