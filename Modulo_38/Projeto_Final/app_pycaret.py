@@ -225,7 +225,8 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        model = load_model('lightgbm_model_final')
+        url = 'https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
+        model = load_model(url)
         st.write(model)
 
         st.write('Identificando o modelo carregado')
