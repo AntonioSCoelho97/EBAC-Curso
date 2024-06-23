@@ -76,6 +76,7 @@ def main():
     if uploaded_file is not None:
         st.header('Base de Dados')  # Este cabeçalho será exibido somente após o carregamento do arquivo
         df = pd.read_csv(uploaded_file)
+        df['mau'] = df['mau'].astype(bool)
         st.write(df.head())
 
         st.header('Estrutura da Base de Dados')
