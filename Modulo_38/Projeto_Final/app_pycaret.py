@@ -225,16 +225,7 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        # Separando uma parte dos dados para validação
-        data = df_sem_missing.sample(frac=0.95, random_state=786)
-        data_unseen = df_sem_missing.drop(data.index)
-        data.reset_index(inplace=True, drop=True)
-        data_unseen.reset_index(inplace=True, drop=True)
-        exp_clf101 = setup(data = data, target = 'mau', session_id=123) 
-        # model = load_model('lightgbm_model_final')
-        lightgbm = create_model('lightgbm')
-        # Model tunning (Hyperparameter Tunning)
-        model = tune_model(lightgbm, optimize='F1')
+        model = load_model('lightgbm_model_final')
         st.write(model)
 
         st.header('Fazendo as predições')
