@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from pycaret.classification import *
 import os
+import pickle
 
 if os.path.exists('dataset.csv'):
     df = pd.read_csv('dataset.csv', index_col=None)
