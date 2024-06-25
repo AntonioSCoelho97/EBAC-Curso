@@ -17,7 +17,21 @@ if choice == 'Arquivo':
         df = pd.read_csv(file, index_col=None)
         df.to_csv('dataset.csv', index=None)
         st.dataframe(df)
+        # Converta a coluna 'data_ref' para datetime
+        df['data_ref'] = pd.to_datetime(df['data_ref'], errors='coerce')
+        df.drop(['data_ref','index', 'Unnamed: 0'], axis=1, inplace=True)
+        def valores_missing(df):
+            for coluna in df.columns:
+                if df[coluna].isnull().sum() > 0:
+                    if df[coluna].dtype in [np.float64, np.int64]:
+                        df[coluna] = df[coluna].fillna(df[coluna].mean())
+                    else:
+                        df[coluna] = df[coluna].fillna(df[coluna].mode()[0])
+            return df
+        df_sem_missing = valores_missing(df)
 
 if choice == 'Previsão':
     with open('lightgbm_model_final.pkl', 'rb') as f:
-        st.download_button('Download do modelo treinado', f, file_name='lightgbm_model_final.pkl')
+        model = load_model(f)
+        predictions = predict_model(model, data=df_sem_missing)
+        st.download_button("Baixar Previsões", predictions.to_csv(index=False), file_name="predict_credit_scorring.csv")
