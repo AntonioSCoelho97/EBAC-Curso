@@ -39,7 +39,7 @@ if choice == 'Arquivo':
         st.write(caminho_arquivo)
 
 if choice == 'Previsão':
-    file_pkl = st.file_uploader('Carregue seu arquivo pkl', type='application/octet-stream')
+    file_pkl = st.file_uploader('Carregue seu arquivo pkl')
     st.write(file_pkl)
     if file_pkl:
         model = load_model(file_pkl)
