@@ -6,9 +6,10 @@ import matplotlib.pyplot as plt
 from pycaret.classification import *
 from sklearn.metrics import accuracy_score, roc_auc_score, recall_score, precision_score, f1_score, cohen_kappa_score, matthews_corrcoef
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-from io import StringIO
+from io import StringIO, BytesIO
 import os
 import pickle
+import requests
 
 
 
@@ -226,7 +227,14 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        model = load_model('./lightgbm_model_final.pkl', 'rb')
+        url = 'https://github.com/AntonioSCoelho97/EBAC-Curso/raw/main/Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
+        token = 'Streamlit-Pycaret'
+        headers = {'Authorization': f'token {token}'}
+        response = requests.get(url, headers=headers)
+        st.write(response.raise_for_status())
+        model_path = BytesIO(response.content)
+        model = load_model(model_path)
+        # model = load_model('./lightgbm_model_final.pkl', 'rb')
         st.write(model)
 
         st.header('Fazendo as predições')
