@@ -39,8 +39,10 @@ if choice == 'Arquivo':
 
 if choice == 'Previsão':
     file_pkl = st.file_uploader('Carregue seu arquivo pkl')
-    with open(file_pkl) as f:
-        if f:
+    if file_pkl:
+        with open(file_pkl, 'rb') as f:  # Use 'rb' para abrir o arquivo em modo binário
             model = load_model(f)
             predictions = predict_model(model, data=df_sem_missing)
             st.download_button("Baixar Previsões", predictions.to_csv(index=False), file_name="predict_credit_scorring.csv")
+    else:
+        st.write("Por favor, carregue um arquivo pkl válido.")
