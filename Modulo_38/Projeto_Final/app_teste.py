@@ -42,7 +42,7 @@ if choice == 'Previsão':
     file_pkl = st.file_uploader('Carregue seu arquivo pkl')
     st.write(file_pkl)
     if file_pkl:
-        path = '/_stcore/upload_file/3618d650-64df-4494-8521-3e946556b10a/8613ae32-de9c-4006-976c-db834bb65d6b/lightgbm_model_final.pkl'
+        path = '//lightgbm_model_final.pkl'
         model = load_model(path)
         predictions = predict_model(model, data=df_sem_missing)
         st.download_button("Baixar Previsões", predictions.to_csv(index=False), file_name="predict_credit_scorring.csv")
