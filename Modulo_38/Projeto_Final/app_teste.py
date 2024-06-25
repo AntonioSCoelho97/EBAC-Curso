@@ -4,7 +4,7 @@ import numpy as np
 from pycaret.classification import *
 import os
 import pickle
-import lightgbm as lgb
+from pathlib import Path
 
 if os.path.exists('dataset.csv'):
     df = pd.read_csv('dataset.csv', index_col=None)
@@ -42,8 +42,8 @@ if choice == 'Previsão':
     file_pkl = st.file_uploader('Carregue seu arquivo pkl')
     st.write(file_pkl)
     if file_pkl:
-        path = './lightgbm_model_final'
-        model = load_model(path)
+        pkl_path = Path(__file__).parents[1] / 'Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
+        model = load_model(pkl_path)
         predictions = predict_model(model, data=df_sem_missing)
         st.download_button("Baixar Previsões", predictions.to_csv(index=False), file_name="predict_credit_scorring.csv")
     else:
