@@ -30,9 +30,14 @@ if choice == 'Arquivo':
                         df[coluna] = df[coluna].fillna(df[coluna].mode()[0])
             return df
         df_sem_missing = valores_missing(df)
+        import os
+        caminho_atual = os.getcwd()
+        st.write(caminho_atual)
+        caminho_arquivo = os.path.dirname(os.path.realpath(__file__))
+        st.write(caminho_arquivo)
 
 if choice == 'Previsão':
-    with open('lightgbm_model_final.pkl', 'rb') as f:
+    with open('./lightgbm_model_final.pkl', 'rb') as f:
         model = load_model(f)
         predictions = predict_model(model, data=df_sem_missing)
         st.download_button("Baixar Previsões", predictions.to_csv(index=False), file_name="predict_credit_scorring.csv")
