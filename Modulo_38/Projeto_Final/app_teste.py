@@ -38,7 +38,7 @@ if choice == 'Arquivo':
         st.write(caminho_arquivo)
 
 if choice == 'Previsão':
-    model_path = './lightgbm_model_final.pkl'
+    model_path = 'https://github.com/AntonioSCoelho97/EBAC-Curso/raw/main/Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
     with open(model_path, 'rb') as f:
         model = load_model(f)
         predictions = predict_model(model, data=df_sem_missing)
