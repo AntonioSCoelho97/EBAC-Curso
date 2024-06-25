@@ -4,6 +4,7 @@ import numpy as np
 from pycaret.classification import *
 import os
 import pickle
+import lightgbm as lgb
 
 if os.path.exists('dataset.csv'):
     df = pd.read_csv('dataset.csv', index_col=None)
@@ -36,6 +37,8 @@ if choice == 'Arquivo':
         st.write(caminho_atual)
         caminho_arquivo = os.path.dirname(os.path.realpath(__file__))
         st.write(caminho_arquivo)
+        loaded_model = lgb.Booster(model_file='lightgbm_model_final.pkl')
+        st.write(loaded_model)
 
 if choice == 'Previsão':
     file_pkl = st.file_uploader('Carregue seu arquivo pkl')
