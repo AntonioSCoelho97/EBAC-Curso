@@ -37,7 +37,8 @@ if choice == 'Arquivo':
         st.write(caminho_arquivo)
 
 if choice == 'Previsão':
-    with open('./lightgbm_model_final.pkl', 'rb') as f:
+    model_path = '/mount/src/ebac-curso/Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
+    with open(model_path, 'rb') as f:
         model = load_model(f)
         predictions = predict_model(model, data=df_sem_missing)
         st.download_button("Baixar Previsões", predictions.to_csv(index=False), file_name="predict_credit_scorring.csv")
