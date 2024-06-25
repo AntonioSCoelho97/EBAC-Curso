@@ -19,5 +19,5 @@ if choice == 'Arquivo':
         st.dataframe(df)
 
 if choice == 'Previsão':
-    with open('./lightgbm_model_final.pkl', 'rb') as f:
+    with open('lightgbm_model_final.pkl', 'rb') as f:
         st.download_button('Download do modelo treinado', f, file_name='lightgbm_model_final.pkl')
