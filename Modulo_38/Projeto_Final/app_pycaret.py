@@ -227,7 +227,7 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        url = 'https://raw.githubusercontent.com/AntonioSCoelho97/EBAC-Curso/main/Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
+        url = './lightgbm_model_final.pkl'
         token = 'Streamlit-Pycaret'
         headers = {'Authorization': f'token {token}'}
         response = requests.get(url, headers=headers)
