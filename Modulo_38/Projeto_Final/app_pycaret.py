@@ -227,14 +227,14 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        url = './lightgbm_model_final.pkl'
-        token = 'Streamlit-Pycaret'
-        headers = {'Authorization': f'token {token}'}
-        response = requests.get(url, headers=headers)
-        st.write(response.raise_for_status())
-        model_path = BytesIO(response.content)
-        model = load_model(model_path)
-        # model = load_model('./lightgbm_model_final.pkl', 'rb')
+        # url = './lightgbm_model_final.pkl'
+        # token = 'Streamlit-Pycaret'
+        # headers = {'Authorization': f'token {token}'}
+        # response = requests.get(url, headers=headers)
+        # st.write(response.raise_for_status())
+        # model_path = BytesIO(response.content)
+        # model = load_model(model_path)
+        model = load_model('./lightgbm_model_final.pkl', 'rb')
         st.write(model)
 
         st.header('Fazendo as predições')
