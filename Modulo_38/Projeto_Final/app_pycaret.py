@@ -9,8 +9,6 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from io import StringIO, BytesIO
 import os
 import pickle
-import joblib
-# import requests
 
 
 
@@ -228,16 +226,7 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        # url = './lightgbm_model_final.pkl'
-        # token = 'Streamlit-Pycaret'
-        # headers = {'Authorization': f'token {token}'}
-        # response = requests.get(url, headers=headers)
-        # st.write(response.raise_for_status())
-        # model_path = BytesIO(response.content)
-        # model = load_model(model_path)
-        # model = joblib.load('./lightgbm_model_final.pkl')
-        # model = load_model('./lightgbm_model_final.pkl', 'rb')
-        model = load_model('./lightgbm_model_final.pkl', 'rb', platform='aws', authentication={'bucket': 'seu_bucket'})
+        model = load_model('./lightgbm_model_final.pkl', 'rb')
         st.write(model)
 
         st.header('Fazendo as predições')
