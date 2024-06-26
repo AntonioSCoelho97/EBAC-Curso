@@ -9,7 +9,8 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from io import StringIO, BytesIO
 import os
 import pickle
-import requests
+import joblib
+# import requests
 
 
 
@@ -234,7 +235,8 @@ def main():
         # st.write(response.raise_for_status())
         # model_path = BytesIO(response.content)
         # model = load_model(model_path)
-        model = load_model('./lightgbm_model_final.pkl', 'rb')
+        model = joblib.load('./lightgbm_model_final.pkl')
+        # model = load_model('./lightgbm_model_final.pkl', 'rb')
         st.write(model)
 
         st.header('Fazendo as predições')
