@@ -235,8 +235,9 @@ def main():
         # st.write(response.raise_for_status())
         # model_path = BytesIO(response.content)
         # model = load_model(model_path)
-        model = joblib.load('./lightgbm_model_final.pkl')
+        # model = joblib.load('./lightgbm_model_final.pkl')
         # model = load_model('./lightgbm_model_final.pkl', 'rb')
+        model = load_model('./lightgbm_model_final.pkl', 'rb', platform='aws', authentication={'bucket': 'seu_bucket'})
         st.write(model)
 
         st.header('Fazendo as predições')
