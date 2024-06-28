@@ -228,7 +228,7 @@ def main():
         st.header('Carregando o modelo')
         # link_pkl = 'https://www.dropbox.com/scl/fi/s8xyl0s4zaf7zfeetyqku/lightgbm_model_final.pkl?rlkey=5zwlx24fhbrsrdp64s0y3o4mp&dl=0'
         # model = load_model(link_pkl, 'rb')
-        model = load_model('./lightgbm_model_final.pkl', 'rb', platform = 'aws', authentication = {'bucket' : 'XXX'}))
+        model = load_model('./lightgbm_model_final.pkl', 'rb', platform = 'aws', authentication = {'bucket' : 'XXX'})
         st.write(model)
 
         st.header('Fazendo as predições')
