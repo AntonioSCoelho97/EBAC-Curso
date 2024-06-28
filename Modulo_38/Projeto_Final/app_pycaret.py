@@ -226,7 +226,7 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        link_pkl = 'https://api.github.com/users/AntonioSCoelho97/EBAC-Curso/Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
+        link_pkl = 'https://api.github.com/users/AntonioSCoelho97/EBAC-Curso/Modulo_38/Projeto_Final/lightgbm_model_final'
         # data = pd.read_pickle(link_pkl)
         # st.write(data)
         model = load_model(link_pkl)
