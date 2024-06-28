@@ -41,10 +41,10 @@ if choice == 'Arquivo':
 if choice == 'Previsão':
     file_pkl = st.file_uploader('Carregue seu arquivo pkl')
     st.write(os.path.abspath(file_pkl.name))
-    if file_pkl:
+    #if file_pkl:
         #pkl_path = Path(__file__).parents[1] / 'Modulo_38/Projeto_Final/lightgbm_model_final'
         #model = load_model(pkl_path)
         #predictions = predict_model(model, data=df_sem_missing)
         #st.download_button("Baixar Previsões", predictions.to_csv(index=False), file_name="predict_credit_scorring.csv")
-    else:
-        st.write("Por favor, carregue um arquivo pkl válido.")
+    #else:
+        #st.write("Por favor, carregue um arquivo pkl válido.")
