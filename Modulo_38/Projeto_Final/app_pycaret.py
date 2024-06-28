@@ -229,7 +229,7 @@ def main():
         link_pkl = 'https://api.github.com/users/AntonioSCoelho97/EBAC-Curso/Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
         # data = pd.read_pickle(link_pkl)
         # st.write(data)
-        model = load_model(link_pkl, 'rb')
+        model = load_model(link_pkl)
         # model = load_model('./lightgbm_model_final.pkl', 'rb', platform = 'aws', authentication = {'bucket' : 'XXX'})
         st.write(model)
 
