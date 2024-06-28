@@ -227,7 +227,9 @@ def main():
 
         st.header('Carregando o modelo')
         link_pkl = 'https://github.com/AntonioSCoelho97/EBAC-Curso/blob/54ccd349025e310a5cf00ca390af7c4d80d4f748/Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
-        model = load_model(link_pkl, 'rb')
+        data = pd.read_pickle(link_pkl)
+        st.write(data)
+        # model = load_model(link_pkl, 'rb')
         # model = load_model('./lightgbm_model_final.pkl', 'rb', platform = 'aws', authentication = {'bucket' : 'XXX'})
         st.write(model)
 
