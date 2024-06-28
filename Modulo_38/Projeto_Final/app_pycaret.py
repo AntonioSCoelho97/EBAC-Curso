@@ -226,9 +226,9 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        # link_pkl = 'https://www.dropbox.com/scl/fi/s8xyl0s4zaf7zfeetyqku/lightgbm_model_final.pkl?rlkey=5zwlx24fhbrsrdp64s0y3o4mp&dl=0'
-        # model = load_model(link_pkl, 'rb')
-        model = load_model('./lightgbm_model_final.pkl', 'rb', platform = 'aws', authentication = {'bucket' : 'XXX'})
+        link_pkl = 'https://github.com/AntonioSCoelho97/EBAC-Curso/blob/54ccd349025e310a5cf00ca390af7c4d80d4f748/Modulo_38/Projeto_Final/lightgbm_model_final.pkl'
+        model = load_model(link_pkl, 'rb')
+        # model = load_model('./lightgbm_model_final.pkl', 'rb', platform = 'aws', authentication = {'bucket' : 'XXX'})
         st.write(model)
 
         st.header('Fazendo as predições')
