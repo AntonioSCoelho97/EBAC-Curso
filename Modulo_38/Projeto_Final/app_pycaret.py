@@ -226,7 +226,7 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        exp_clf101 = setup(data = data, target = 'mau', session_id=123)
+        exp_clf101 = setup(data = df_sem_missing, target = 'mau', session_id=123)
         lightgbm = create_model('lightgbm')
         tuned_lightgbm = tune_model(lightgbm, optimize='F1')
         model = finalize_model(tuned_lightgbm)
