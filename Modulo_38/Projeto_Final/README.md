@@ -19,10 +19,10 @@ Neste projeto, o modelo de aprendizado foi construído através de um credit sco
   - O pipeline "lightgbm_model_final.pkl" é oriundo do processamento do "Mod38Projeto.ipynb".
     
   ## Utilizar o modelo treinado para escorar a base:
-  - O modelo treinado será executado logo após a análise descritiva (ativada com o carregamento do arquivo CSV.
+  - O modelo treinado será executado logo após a análise descritiva (ativada com o carregamento do arquivo CSV).
      
   ## nome_arquivo = 'model_final.pkl':
-  - Nome dados ao arquivo pipeline.
+  - Nome dado ao arquivo pipeline.
     
   ## Gravar um vídeo da tela do streamlit em funcionamento:
   - Realizar a gravação do vídeo para mostrar o funcionamento da ferramenta conforme apresentado nas aulas gravadas do curso.
