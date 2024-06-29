@@ -228,7 +228,7 @@ def main():
         st.header('Carregando o modelo')
         link_pkl = 'https://api.github.com/users/AntonioSCoelho97/EBAC-Curso/Modulo_38/Projeto_Final/lightgbm_model_final'
         #model = load_model(link_pkl)
-        # model = load_model(link_pkl, authentication = {'bucket' : 'XXX'})
+        model = load_model(link_pkl, authentication = {'bucket' : 'XXX'})
         st.write(model)
 
         st.header('Fazendo as predições')
