@@ -3,7 +3,7 @@
 
 https://github.com/AntonioSCoelho97/EBAC-Curso/assets/132955062/94a044b4-677b-4cc3-9f6d-620060e49b22
 
-https://ebac-curso-czkkh6kudupaaseqrrwwpd.streamlit.app/
+https://ebac-curso-knlrroxfjkheeyuy4vgayh.streamlit.app/
 
   - Subir no GITHUB todos os jupyter notebooks/códigos que você desenvolveu nesse ultimo módulo
   - Gerar um arquivo python (.py) com todas as funções necessárias para rodar no streamlit a escoragem do arquivo de treino
