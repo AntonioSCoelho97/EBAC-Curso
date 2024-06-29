@@ -226,15 +226,9 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        exp_clf101 = setup(data = df_sem_missing, target = 'mau', session_id=123)
-        lightgbm = create_model('lightgbm')
-        tuned_lightgbm = tune_model(lightgbm, optimize='F1')
-        model = finalize_model(tuned_lightgbm)
-        #link_pkl = 'https://api.github.com/users/AntonioSCoelho97/EBAC-Curso/Modulo_38/Projeto_Final/lightgbm_model_final'
-        # data = pd.read_pickle(link_pkl)
-        # st.write(data)
+        link_pkl = 'https://api.github.com/users/AntonioSCoelho97/EBAC-Curso/Modulo_38/Projeto_Final/lightgbm_model_final'
         #model = load_model(link_pkl)
-        # model = load_model('./lightgbm_model_final.pkl', 'rb', platform = 'aws', authentication = {'bucket' : 'XXX'})
+        # model = load_model(link_pkl, authentication = {'bucket' : 'XXX'})
         st.write(model)
 
         st.header('Fazendo as predições')
