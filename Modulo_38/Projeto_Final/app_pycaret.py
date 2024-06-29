@@ -226,7 +226,7 @@ def main():
         st.dataframe(info_df)
 
         st.header('Carregando o modelo')
-        model = load_model('lightgbm_model_final')
+        model = load_model('Modulo_38/Projeto_Final/lightgbm_model_final')
         st.write(model)
 
         st.header('Fazendo as predições')
